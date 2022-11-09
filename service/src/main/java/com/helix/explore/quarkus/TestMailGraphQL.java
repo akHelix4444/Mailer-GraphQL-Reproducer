@@ -13,9 +13,14 @@ public class TestMailGraphQL {
     @Inject
     MySimpleService mySimpleService;
 
-    @Query("checkMailSend")
-    public Uni<FilmDTO> checkMailSend(String targetAddress) {
-        return mySimpleService.doSomethingAndSendMail();
+    @Query("checkMailSendReactive")
+    public Uni<FilmDTO> checkMailSendReactive(String targetAddress) {
+        return mySimpleService.doSomethingAndSendMailReactive();
+    }
+
+    @Query("checkMailSendImperative")
+    public FilmDTO checkMailSendImperative(String targetAddress) {
+        return mySimpleService.doSomethingAndSendMailImperative();
     }
 
 }
