@@ -1,0 +1,33 @@
+quarkus:
+  http:
+    port: 8080
+    cors: true
+
+  log:
+    level: DEBUG
+    console:
+      color: false
+      json:
+        ~: false
+        pretty-print: true
+        print-details: true
+
+  smallrye-graphql:
+    schema-include-scalars: true
+    ui:
+      always-include: true
+      enable: true
+
+  mailer:
+    from: "helix4444@testmail.com"
+    host: "localhost"
+    port: 1025
+    ssl: false
+    trust-all: true
+    username: "helix4444"
+    password: "pswd"
+    mock: false
+
+  opentelemetry:
+    tracer:
+      enabled: false
