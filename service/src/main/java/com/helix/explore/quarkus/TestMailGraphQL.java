@@ -1,7 +1,8 @@
 package com.helix.explore.quarkus;
 
-import io.quarkus.mailer.Mail;
-import io.quarkus.mailer.Mailer;
+import com.helix.explore.quarkus.service.MySimpleService;
+import com.helix.explore.quarkus.dto.FilmDTO;
+import io.smallrye.mutiny.Uni;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
@@ -10,16 +11,11 @@ import org.eclipse.microprofile.graphql.Query;
 public class TestMailGraphQL {
 
     @Inject
-    Mailer mailer;
+    MySimpleService mySimpleService;
 
     @Query("checkMailSend")
-    public String checkMailSend(String targetAddress) {
-        var mailToSend = Mail.withText(
-                targetAddress,
-                "A simple email from quarkus",
-                "This is my body");
-        mailer.send(mailToSend);
-        return "Mail test!";
+    public Uni<FilmDTO> checkMailSend(String targetAddress) {
+        return mySimpleService.doSomethingAndSendMail();
     }
 
 }
